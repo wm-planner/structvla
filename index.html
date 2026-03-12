@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StructVLA | Beyond Dense Futures</title>
+    <meta
+      name="description"
+      content="StructVLA reformulates world models as structured planners for long-horizon robotic manipulation."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top">StructVLA</a>
+        <nav class="topnav">
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#real-world">Real World</a>
+          <a href="#videos">Video</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <h1>Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation</h1>
+          <div class="author-block">
+            <p class="authors">
+              Minghao Jin<sup>1,*</sup>, Mozheng Liao<sup>1,*</sup>, Mingfei Han<sup>1,2,*</sup>, Zhihui Li<sup>1</sup>, Xiaojun Chang<sup>1,2</sup>
+            </p>
+            <p class="affiliations"><sup>1</sup> University of Science and Technology of China</p>
+            <p class="affiliations"><sup>2</sup> Department of CV, MBZUAI</p>
+            <p class="contrib">* Equal contribution.</p>
+          </div>
+          <div class="link-actions">
+            <a class="link-action" href="#">
+              <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 3.75h7.5L19.25 8.5V20a1.25 1.25 0 0 1-1.25 1.25h-11A1.25 1.25 0 0 1 5.75 20V5A1.25 1.25 0 0 1 7 3.75Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M14.5 3.75V8.5h4.75" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M8.5 12h7M8.5 15.5h7M8.5 19h5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"/>
+              </svg>
+              <span>Paper</span>
+            </a>
+            <a class="link-action" href="#">
+              <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9.25 9.25 5.5 12l3.75 2.75M14.75 9.25 18.5 12l-3.75 2.75M13.25 6.75 10.75 17.25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+              </svg>
+              <span>Code</span>
+            </a>
+            <a class="link-action" href="#">
+              <svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.75 8.25 12 5.5l5.25 2.75v7.5L12 18.5l-5.25-2.75v-7.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M12 5.5v13M6.75 8.25 12 11l5.25-2.75" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              </svg>
+              <span>Model</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="hero-figure">
+          <figure class="media-frame plain-frame">
+            <img
+              src="./assets/images/illustration.png"
+              alt="StructVLA illustration showing structured planning versus dense video prediction and semantic planning."
+            />
+          </figure>
+        </section>
+
+        <section class="summary-grid">
+          <article class="metric-card">
+            <span class="metric-value">75.0%</span>
+            <span class="metric-label">SimplerEnv-WidowX Average</span>
+          </article>
+          <article class="metric-card">
+            <span class="metric-value">94.8%</span>
+            <span class="metric-label">LIBERO Average</span>
+          </article>
+          <article class="metric-card">
+            <span class="metric-value">Real-World</span>
+            <span class="metric-label">Improved performance and generalization in deployment</span>
+          </article>
+        </section>
+
+        <section class="section intro">
+          <div class="section-heading">
+            <h2>Abstract</h2>
+          </div>
+          <div class="section-body prose">
+            <p>
+              Recent world-model-based Vision-Language-Action (VLA) architectures have improved robotic manipulation through predictive visual foresight. However, dense future prediction introduces visual redundancy and accumulates errors, causing long-horizon plan drift. Meanwhile, recent sparse methods typically represent visual foresight using high-level semantic subtasks or implicit latent states. These representations often lack explicit kinematic grounding, weakening the alignment between planning and low-level execution. To address this, we propose StructVLA, which reformulates a generative world model into an explicit structured planner for reliable control. Instead of dense rollouts or semantic goals, StructVLA predicts sparse, physically meaningful structured frames. Derived from intrinsic kinematic cues (e.g., gripper transitions and kinematic turning points), these frames capture spatiotemporal milestones closely aligned with task progress. We implement this approach through a two-stage training paradigm with a unified discrete token vocabulary: the world model is first trained to predict structured frames and subsequently optimized to map the structured foresight into low-level actions. This approach provides clear physical guidance and bridges visual planning and motion control. In our experiments, StructVLA achieves strong average success rates of 75.0% on SimplerEnv-WidowX and 94.8% on LIBERO. Real-world deployments further demonstrate reliable task completion and robust generalization across both basic pick-and-place and complex long-horizon tasks.
+            </p>
+          </div>
+        </section>
+
+        <section id="method" class="section">
+          <div class="section-heading">
+            <h2>Method</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <h3>Kinematic structured frames</h3>
+              <p>
+                Structured subgoals are derived from gripper transitions and motion turning points
+                instead of semantic labels or dense rollouts.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Two-stage training</h3>
+              <p>
+                Stage 1 trains an autoregressive world model to predict sparse structured frames.
+                Stage 2 fine-tunes the model for action prediction.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Plan-to-act transfer</h3>
+              <p>
+                A shared discrete token space strengthens the coupling between visual planning and
+                executable manipulation behavior.
+              </p>
+            </article>
+          </div>
+          <figure class="media-frame plain-frame">
+            <img
+              src="./assets/images/overview.png"
+              alt="StructVLA two-stage overview with structured planner training and action policy fine-tuning."
+            />
+            <figcaption>
+              StructVLA first learns to predict sparse structured frames, then transfers structured
+              planning to low-level action control.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="results" class="section">
+          <div class="section-heading">
+            <h2>Simulation Results</h2>
+            <p>
+              Results on SimplerEnv-WidowX and LIBERO show consistent gains over prior VLA baselines.
+            </p>
+          </div>
+          <figure class="media-frame plain-frame">
+            <img
+              src="./assets/images/benchmarks_table.png"
+              alt="Benchmark table comparing StructVLA against baseline methods on SimplerEnv-WidowX and LIBERO."
+            />
+            <figcaption>
+              StructVLA reaches 75.0% average success on SimplerEnv-WidowX and 94.8% on LIBERO.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <h2>Planner Visualization</h2>
+            <p>
+              The planner produces clearer visual foresight and attention over task-relevant objects
+              and transitions than the baseline world model.
+            </p>
+          </div>
+          <figure class="media-frame plain-frame">
+            <img
+              src="./assets/images/visualization_for_planner.png"
+              alt="Planner visualization comparing structured planner foresight and attention against a baseline world model."
+            />
+            <figcaption>
+              Visualization of planner foresight, attention maps, prediction behavior on unseen
+              tasks, and the real-world deployment setup.
+            </figcaption>
+          </figure>
+        </section>
+
+        <section id="real-world" class="section">
+          <div class="section-heading">
+            <h2>Real-World Results</h2>
+            <p>
+              StructVLA improves success rates on real-world pick-and-place, long-horizon tidy-up,
+              unseen objects, and intervention settings.
+            </p>
+          </div>
+          <div class="results-split">
+            <figure class="media-frame plain-frame wide-frame equal-height-frame">
+              <div class="equal-height-media">
+                <img
+                  src="./assets/images/real_world_results.png"
+                  alt="Bar chart showing real-world task success rates for StructVLA and baselines."
+                />
+              </div>
+              <figcaption>Real-world deployment results across multiple object categories and tidy-up tasks.</figcaption>
+            </figure>
+            <figure class="media-frame plain-frame narrow-frame equal-height-frame">
+              <div class="equal-height-media">
+                <img
+                  src="./assets/images/generalization.png"
+                  alt="Bar chart showing StructVLA generalization and robustness results in unseen object and intervention settings."
+                />
+              </div>
+              <figcaption>Generalization and robustness under unseen object and intervention scenarios.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="videos" class="section">
+          <div class="section-heading">
+            <h2>Video</h2>
+            <p>
+              A real-world demonstration of StructVLA on tidy-up task.
+            </p>
+          </div>
+          <div class="video-frame plain-frame">
+            <video controls playsinline preload="metadata">
+              <source src="./assets/videos/real_world_StructVLA.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </section>
+
+        <section class="section citation-section">
+          <div class="section-heading">
+            <h2>Citation</h2>
+            <p>If you find our work helpful, please cite us:</p>
+          </div>
+          <div class="citation-wrap">
+            <pre class="citation-block"><code>@article{structvla2026,
+  title={Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation},
+  author={Jin, Minghao and Liao, Mozheng and Han, Mingfei and Li, Zhihui and Chang, Xiaojun},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2026}
+}</code></pre>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </body>
+</html>
