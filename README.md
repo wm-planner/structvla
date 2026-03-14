@@ -8,13 +8,17 @@ StructVLA reformulates generative world models as **structured planners** for ro
 
 ## Overview
 
-**Title**: Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation
+<div align="center">
 
-**Authors**: Minghao Jin<sup>1,*</sup>, Mozheng Liao<sup>1,*</sup>, Mingfei Han<sup>1,2,*</sup>, Zhihui Li<sup>1</sup>, Xiaojun Chang<sup>1,2</sup>
+<strong>Title</strong>: Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation
+
+<strong>Authors</strong>: Minghao Jin<sup>1,*</sup>, Mozheng Liao<sup>1,*</sup>, Mingfei Han<sup>1,2,*</sup>, Zhihui Li<sup>1</sup>, Xiaojun Chang<sup>1,2</sup>
 
 <sup>1</sup> University of Science and Technology of China  
 <sup>2</sup> Department of CV, MBZUAI  
 <sup>*</sup> Equal contribution
+
+</div>
 
 ## Abstract
 
