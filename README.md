@@ -57,7 +57,6 @@ More details: [docs/simpler.md](docs/simpler.md)
 | Method | Pick&Place (Unseen Objects) | Tidy-Up (Unseen Objects) | Intervention |
 |--------|-----------------------------|--------------------------|--------------|
 | StructVLA | 80.0 | 70.0 | 80.0 |
-More details: [docs/real-world.md](docs/real-world.md)
 
 ## Repository Layout
 
