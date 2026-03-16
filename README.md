@@ -4,7 +4,7 @@ StructVLA reformulates generative world models as **structured planners** for ro
 
 <img src="docs/imgs/structvla.png" alt="StructVLA" height="300">
 
-> 📜 [[paper](./World_model_planner.pdf)] 🤖 [[project page](https://wm-planner.github.io/structvla/)] 💻 [[code](https://github.com/wm-planner/structvla)]
+> 📜 [[paper](https://arxiv.org/abs/2603.12553)] 🤖 [[project page](https://wm-planner.github.io/structvla/)] 💻 [[code](https://github.com/wm-planner/structvla)]
 
 ## Overview
 
@@ -174,30 +174,32 @@ See:
 ```bash
 # SimplerEnv planner
 bash scripts/planner/train_video_1node_simpler.sh
-# Hugging Face ckpt: https://huggingface.co/Minham/StructVLA/tree/main/PLANNER_BRIDGE_30K
 
 # LIBERO planner
 bash scripts/planner/train_video_1node_libero.sh
-# Hugging Face ckpt: https://huggingface.co/Minham/StructVLA/tree/main/PLANNER_LIBERO_10K
 
 # Real-world planner
 bash scripts/planner/train_video_1node_robot.sh
 ```
+
+- SimplerEnv planner Hugging Face ckpt: [PLANNER_BRIDGE_30K](https://huggingface.co/Minham/StructVLA/tree/main/PLANNER_BRIDGE_30K)
+- LIBERO planner Hugging Face ckpt: [PLANNER_LIBERO_10K](https://huggingface.co/Minham/StructVLA/tree/main/PLANNER_LIBERO_10K)
 
 ### 2. Action policy training
 
 ```bash
 # SimplerEnv policy
 bash scripts/simulator/simplerenv/train_simplerenv_bridge_video.sh
-# Hugging Face ckpt: https://huggingface.co/Minham/StructVLA/tree/main/STRUCTVLA_BRIDGE_20K
 
 # LIBERO policy
 bash scripts/simulator/libero/train_libero_video.sh
-# Hugging Face ckpt: https://huggingface.co/Minham/StructVLA/tree/main/STRUCTVLA_LIBERO_4K
 
 # Real-world policy
 bash scripts/real_world/train_real_world_robot.sh
 ```
+
+- SimplerEnv policy Hugging Face ckpt: [STRUCTVLA_BRIDGE_20K](https://huggingface.co/Minham/StructVLA/tree/main/STRUCTVLA_BRIDGE_20K)
+- LIBERO policy Hugging Face ckpt: [STRUCTVLA_LIBERO_4K](https://huggingface.co/Minham/StructVLA/tree/main/STRUCTVLA_LIBERO_4K)
 
 ## Evaluation
 
@@ -248,7 +250,7 @@ If you find our work helpful, please cite:
 @article{jin2026structvla,
   title={Beyond Dense Futures: World Models as Structured Planners for Robotic Manipulation},
   author={Jin, Minghao and Liao, Mozheng and Han, Mingfei and Li, Zhihui and Chang, Xiaojun},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  journal={arXiv preprint arXiv:2603.12553},
   year={2026}
 }
 ```
